@@ -12,6 +12,10 @@ var app = new Vue({
 
         comment_name:'',
         comment_text:'',
+        error_comment_name:'',
+        error_comment_text:'',
+        error_in_comment_name:'',
+        error_in_comment_text:'',
         list_comments:{},
         top_news:{}
     },
@@ -81,7 +85,28 @@ var app = new Vue({
 
         },
         sendComment:function(event){
+
             $this = this;
+
+            var isError = 0;
+            $this.error_comment_name = '';
+            $this.error_comment_text = '';
+            $this.error_in_comment_name = '';
+            $this.error_in_comment_text = '';
+            if($this.comment_name == ''){
+                isError = 1;
+                $this.error_comment_name = 'border_error';
+                $this.error_in_comment_name = 'Введите имя';
+            }
+            if($this.comment_text == ''){
+                isError = 1;
+                $this.error_comment_text = 'border_error';
+                $this.error_in_comment_text = 'Введите текст';
+            }
+
+            if(isError == 1){
+                return false;
+            }
 
              $.ajax({
                 type:'POST',
@@ -162,6 +187,20 @@ var app = new Vue({
                 }
 
             });
+        },
+        inputName:function(event){
+            // console.log(event.target.value);
+            if(event.target.value != ''){
+                this.error_comment_name = '';
+                this.error_in_comment_name = '';
+            }
+        },
+        inputText:function(event){
+            // console.log(event.target.value);
+            if(event.target.value != ''){
+                this.error_comment_text = '';
+                this.error_in_comment_text = '';
+            }
         }
     }
 });

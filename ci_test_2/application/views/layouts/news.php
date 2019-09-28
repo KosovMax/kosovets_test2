@@ -33,10 +33,12 @@
 		    	<div>
 		    	<div class="form-group">
 				    <label for="exampleInputEmail1">Name</label>
-				    <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Name" v-model="comment_name" >
+				    <input type="text" class="form-control" v-bind:class="error_comment_name" aria-describedby="emailHelp" placeholder="Name" v-model="comment_name" v-on:keyup="inputName">
+				    <small class="form-text text_error">{{error_in_comment_name}}</small>
 				  </div>
 		    	<div class="form-group">
-				    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" v-model="comment_text"></textarea>
+				    <textarea class="form-control" v-bind:class="error_comment_text" rows="5" v-model="comment_text" v-on:keyup="inputText"></textarea>
+				    <small class="form-text text_error">{{error_in_comment_text}}</small>
 				  </div>
 		    	<div style="text-align: center;"><button type="button" class="btn btn-primary" v-on:click="sendComment" >Отправить</button></div>
 		    	</div>

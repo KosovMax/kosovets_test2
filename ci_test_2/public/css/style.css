@@ -80,3 +80,10 @@ position: relative;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+.text_error{
+	color: red;
+}
+.border_error{
+	border-color: red;
+}
