@@ -18,20 +18,12 @@ class Comments_model extends MY_Model
     public static function get_list_comments_id($id = 0, $user = ''){
 
         $CI =& get_instance();
-        $_list = $CI->s->from(self::COMMENTS_TABLE)->where('news_id', $id)->select(array('id', 'name', 'news_id', 'text'))->many();
-       
+        $_list = $CI->s->sql("SELECT c.id, c.name, c.text, c.news_id, count(lc.comment_id) 'like_count', 
+            (SELECT count(*) 'like_status' FROM like_comments WHERE comment_id=lc.comment_id AND user='".$user."') 'like_status' 
+            FROM `comments` AS c LEFT JOIN like_comments AS lc ON c.id = lc.comment_id WHERE `news_id`=".$id." GROUP BY c.id ORDER BY c.id ASC")->many();
 
 
-
-        $comment_list = [];
-        foreach ($_list as $k => $_item) {
-            $comment_list[$k] = $_item;
-            $comment_list[$k]['like_count'] = Like_comments_model::get_like_comment_count($_item['id']);
-            $comment_list[$k]['like_status'] = Like_comments_model::get_like_comment_status($_item['id'], $user);
-        }
-
-
-        return $comment_list;
+        return $_list;
     }
 
     /**
