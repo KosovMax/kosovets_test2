@@ -55,7 +55,7 @@
 		                  <p class="card-text max_text" v-html="tn.short_description" ></p>
 		                	<div class="d-flex justify-content-end align-items-end">
 		                    <div class="btn-group">
-		                      <a type="button" class="btn btn-sm btn-outline-secondary" v-bind:href="'/news/index/' + tn.id">Link</a>
+		                      <a type="button" class="btn btn-sm btn-outline-secondary" v-bind:href="'/news/index/' + tn.id">Читайте далее</a>
 		                    </div>
 		                  </div>
 		                </div>

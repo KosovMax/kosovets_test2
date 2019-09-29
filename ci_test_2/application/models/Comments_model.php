@@ -3,6 +3,7 @@
 class Comments_model extends MY_Model
 {
     const COMMENTS_TABLE = 'comments';
+    // const LIKE_COMMENTS_TABLE = 'like_comments';
 
     function __construct($id = FALSE)
     {
@@ -17,7 +18,10 @@ class Comments_model extends MY_Model
     public static function get_list_comments_id($id = 0, $user = ''){
 
         $CI =& get_instance();
-        $_list = $CI->s->from(self::COMMENTS_TABLE)->select(array('id', 'name', 'news_id', 'text'))->where('news_id', $id)->many();
+        $_list = $CI->s->from(self::COMMENTS_TABLE)->where('news_id', $id)->select(array('id', 'name', 'news_id', 'text'))->many();
+       
+
+
 
         $comment_list = [];
         foreach ($_list as $k => $_item) {

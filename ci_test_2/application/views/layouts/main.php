@@ -12,7 +12,7 @@
 		    			<h3>{{ post.header }}</h3>
 		    			<div class="image_news_list"  :style="{'background-image': 'url(' + post.img + ')'}"></div>
 		    			<p v-html="post.description"></p>
-		    			<a class="btn btn-primary"  v-bind:href="'/news/index/' + post.id" role="button">Link</a>
+		    			<a class="btn btn-primary"  v-bind:href="'/news/index/' + post.id" role="button">Читайте далее</a>
 		    		</li>
 		    	</ul>
 		    </div>
