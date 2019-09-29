@@ -44,5 +44,19 @@ class Like_comments_model extends MY_Model
         return TRUE;
     }
 
+    /**
+     * @return delete
+     */
+    public static function delete($id = 0){
+
+        $CI =& get_instance();
+        $res = $CI->s->from(self::LIKE_COMMENTS_TABLE)->where('comment_id', $id)->delete()->execute();
+
+        if(!$res){
+            return FALSE;
+        }
+        return TRUE;
+    }
+
 
 }

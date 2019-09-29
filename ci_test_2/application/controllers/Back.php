@@ -88,7 +88,9 @@ class Back extends MY_Controller
             */ 
 
             return $this->response_success(
-                ['comment' => Comments_model::delete($param['COMMENT_ID']),
+                [
+                'comment' => Comments_model::delete($param['COMMENT_ID']),
+                'like_comment' => Like_comments_model::delete($param['COMMENT_ID']),
                 'list_comments' => Comments_model::get_list_comments_id($param['NEWS_ID'], $param['USER'])
             ]);
             
