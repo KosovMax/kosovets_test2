@@ -234,10 +234,10 @@ class News_model extends MY_Model
     {
 
         $CI =& get_instance();
-
+        $CI->s->sql('UPDATE `news` SET `views`= views+1 WHERE id='.$id)->execute();
 
         $_data = $CI->s->from(self::NEWS_TABLE)->where('id', $id)->one();
-        $upp = $CI->s->from(self::NEWS_TABLE)->where('id', $id)->update(['views'=>$_data['views']+1])->execute();
+        
 
         $news_list = [];
         // foreach ($_data as $_item) {
